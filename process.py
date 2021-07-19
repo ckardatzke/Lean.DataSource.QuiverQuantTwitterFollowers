@@ -12,7 +12,7 @@ headers = {'accept': 'application/json',
 'X-CSRFToken': 'TyTJwjuEC7VV7mOqZ622haRaaUr0x0Ng4nrwSRFKQs7vdoBcJlK9qjAS69ghzhFu',
 'Authorization': "Token "+token}
 
-pathlib.Path('./temp-output-directory/alternative/quiver/twitter/').mkdir(parents=True, exist_ok=True)
+pathlib.Path('/temp-output-directory/alternative/quiver/twitter/').mkdir(parents=True, exist_ok=True)
 
 company_url = "https://api.quiverquant.com/beta/companies"
 twitter_url = "https://api.quiverquant.com/beta/historical/twitter/"
@@ -42,7 +42,7 @@ for c in companies:
 
             csv_lines = "\n".join(line_list)
 
-            with open('./temp-output-directory/alternative/quiver/twitter/' + ticker.lower() + '.csv', 'w') as ticker_file:
+            with open('/temp-output-directory/alternative/quiver/twitter/' + ticker.lower() + '.csv', 'w') as ticker_file:
                 ticker_file.write(csv_lines)
             print("Finished processing ", ticker)
             break       
