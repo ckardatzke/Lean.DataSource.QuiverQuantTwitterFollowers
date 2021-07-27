@@ -96,11 +96,10 @@ namespace QuantConnect.DataSource
         {
             var csv = line.Split(',');
 
-            var parsedDate = Parse.DateTimeExact(csv[0], "yyyyMMdd");
-            var followers = Parse.Int(csv[1]);
-            var percentChangeDay = Parse.Decimal(csv[2]);
-            var percentChangeWeek = Parse.Decimal(csv[3]);
-            var percentChangeMonth = Parse.Decimal(csv[4]);
+            QuantConnect.Parse.TryParse(csv[1], NumberStyles.Any, out int followers);
+            QuantConnect.Parse.TryParse(csv[2], NumberStyles.Any, out decimal percentChangeDay);
+            QuantConnect.Parse.TryParse(csv[3], NumberStyles.Any, out decimal percentChangeWeek);
+            QuantConnect.Parse.TryParse(csv[4], NumberStyles.Any, out decimal percentChangeMonth);
 
             return new QuiverQuantTwitterFollowers
             {
@@ -110,7 +109,7 @@ namespace QuantConnect.DataSource
                 MonthPercentChange = percentChangeMonth,
 
                 Symbol = config.Symbol,
-                Time = parsedDate
+                Time =  QuantConnect.Parse.DateTimeExact(csv[0], "yyyyMMdd")
             };
         }
 
